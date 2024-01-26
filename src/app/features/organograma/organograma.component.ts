@@ -1,22 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import OrgChart from "src/assets/balkanapp/orgchart";
+import { OrganogramaService } from './services/organograma.service';
+// import { IChart } from './interfaces/chart';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-organograma',
   templateUrl: './organograma.component.html',
   styleUrls: ['./organograma.component.scss']
 })
-export class OrganogramaComponent implements OnInit {
+export class OrganogramaComponent implements OnInit, OnDestroy {
 
   public chart!: OrgChart;
 
-  constructor() { }
+  // public chartData!: Array<IChart>;
+
+  private subscription!: Subscription;
+
+  constructor(
+    private organogramaService: OrganogramaService
+  ) { }
 
   ngOnInit(): void {
-    this.buildChartTree();
+    this.buildTree();
+    this.loadData();
   }
 
-  buildChartTree() {
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  buildTree() {
     const tree = document.getElementById('tree') as HTMLDivElement;
 
     if (tree && OrgChart) {
@@ -27,16 +41,14 @@ export class OrganogramaComponent implements OnInit {
         },
       });
 
-      this.chart.load([
-        { id: 1, name: "Denny Curtis", title: "CEO", img: "https://cdn.balkan.app/shared/2.jpg" },
-        { id: 2, pid: 1, name: "Ashley Barnett", title: "Sales Manager", img: "https://cdn.balkan.app/shared/3.jpg" },
-        { id: 3, pid: 1, name: "Caden Ellison", title: "Dev Manager", img: "https://cdn.balkan.app/shared/4.jpg" },
-        { id: 4, pid: 2, name: "Elliot Patel", title: "Sales", img: "https://cdn.balkan.app/shared/5.jpg" },
-        { id: 5, pid: 2, name: "Lynn Hussain", title: "Sales", img: "https://cdn.balkan.app/shared/6.jpg" },
-        { id: 6, pid: 3, name: "Tanner May", title: "Developer", img: "https://cdn.balkan.app/shared/7.jpg" },
-        { id: 7, pid: 3, name: "Fran Parsons", title: "Developer", img: "https://cdn.balkan.app/shared/8.jpg" }
-      ]);
+      // this.chart.load();
     }
+  }
+
+  loadData() {
+    this.subscription = this.organogramaService.getChart().subscribe({
+      next: (data) => this.chart.load(data)
+    });
   }
 
 }
