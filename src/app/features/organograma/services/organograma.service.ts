@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { IChart } from '../interfaces/chart';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ export class OrganogramaService {
   ) { }
 
   getChart(): Observable<Array<IChart>> {
-    return this.http.get<Array<IChart>>(`http://localhost:3000/chart`);
+    return this.http.get<Array<IChart>>(`${environment.api}/chart`).pipe(
+      tap(console.log)
+    );
   }
 }

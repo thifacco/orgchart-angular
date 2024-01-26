@@ -47,7 +47,9 @@ export class OrganogramaComponent implements OnInit, OnDestroy {
 
   loadData() {
     this.subscription = this.organogramaService.getChart().subscribe({
-      next: (data) => this.chart.load(data)
+      next: (data) => this.chart.load(data),
+      error: () => console.log('Erro ao tentar carregar o organograma'),
+      complete: () => console.log('Organograma carregado com sucesso!')
     });
   }
 
