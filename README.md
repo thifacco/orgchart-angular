@@ -7,9 +7,17 @@ Implementação do Balkan OrgChartJS utilizando Angular
 npm install
 ```
 
-## Rodar aplicação
+## Executar a aplicação
+
+Executar app + api no mesmo terminal
+```
+npm run server
+```
+
+Executar app + api em terminais separados
 ```
 npm start
+npm run api
 ```
 
 ### Referências
