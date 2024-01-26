@@ -1,0 +1,37 @@
+{
+   "chart": [
+      {
+         "id": 1,
+         "name": "Matheus Trevisan",
+         "title": "Sócio",
+         "img": "https://cdn.balkan.app/shared/3.jpg"
+      },
+      {
+         "id": 2,
+         "name": "Bruna Moraes Facco",
+         "title": "Sócia",
+         "img": "https://cdn.balkan.app/shared/2.jpg"
+      },
+      {
+         "id": 3,
+         "pid": 1,
+         "name": "Marcia Trevisan",
+         "title": "Financeiro e RH",
+         "img": "https://cdn.balkan.app/shared/4.jpg"
+      },
+      {
+         "id": 4,
+         "pid": 3,
+         "name": "Michelle F. dos Santos",
+         "title": "Diligências",
+         "img": "https://cdn.balkan.app/shared/6.jpg"
+      },
+      {
+         "id": 5,
+         "pid": 3,
+         "name": "Thaís Farias",
+         "title": "Diligências e Administrativo",
+         "img": "https://cdn.balkan.app/shared/8.jpg"
+      }
+   ]
+}

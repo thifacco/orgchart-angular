@@ -35,8 +35,10 @@ export class OrganogramaComponent implements OnInit, OnDestroy {
 
     if (tree && OrgChart) {
       this.chart = new OrgChart(tree, {
+        template: 'olivia',
         nodeBinding: {
           field_0: "name",
+          field_1: "title",
           img_0: "img"
         },
       });
